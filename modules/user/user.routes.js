@@ -17,7 +17,7 @@ const userModel = require("../../DB/models/user.model");
 router.get("/",async (req,res) => {res.json({message:"hello"})})
 router.post("/user/addUser", addUser)
 router.get("/user/getAllUsers", getAllUsers);
-router.get("/user/getUser", validationFunc(getUserValidation),getUser);
+router.get("/user/getUser/:userId", validationFunc(getUserValidation),getUser);
 router.patch("/user/updateBalance", validationFunc(updateBalanceValidation),updateBalance);
 // apis end*************************
 

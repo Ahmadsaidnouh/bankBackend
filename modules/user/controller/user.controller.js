@@ -231,7 +231,7 @@ const updateBalance = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
-    let {userId} = req.body;
+    let {userId} = req.params;
     try {
         const user = await userModel.findOne({_id: userId});
         const users = await userModel.find({});

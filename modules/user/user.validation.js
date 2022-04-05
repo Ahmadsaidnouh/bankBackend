@@ -8,7 +8,7 @@ const updateBalanceValidation = {
     })
 }
 const getUserValidation = {
-    body: Joi.object().required().keys({
+    params: Joi.object().required().keys({
         userId: Joi.string().required().min(24).max(24)
     })
 }
