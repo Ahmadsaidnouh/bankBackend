@@ -219,7 +219,7 @@ const updateBalance = async (req, res) => {
     try {
         const user = await userModel.findOne({ _id: userId });
         if (user) {
-            const updatedUser = await userModel.findByIdAndUpdate(useId, { currentBalance: newBalance }, { new: true })
+            const updatedUser = await userModel.findByIdAndUpdate(userId, { currentBalance: newBalance }, { new: true })
             res.json({ message: "Done", updatedUser });
         }
         else {
