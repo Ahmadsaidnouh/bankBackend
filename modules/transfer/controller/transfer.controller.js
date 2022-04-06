@@ -11,7 +11,7 @@ const addTransfer = async (req, res) => {
                 if (toUser) {
                     const createTransfer = new transferModel({ fromUserId, toUserId, amount });
                     const addedTransfer = await createTransfer.save();
-                    res.json({ message: "Transfer completed successfully!!", addedTransfer });
+                    res.json({ message: "Done", addedTransfer });
                 }
                 else {
                     res.status(400).json({ message: "No user with such email to transfer to!!" })
