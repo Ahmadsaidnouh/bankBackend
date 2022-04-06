@@ -12,7 +12,7 @@ const validationFunc = (schema) => {
             }
         })
         if (errorsList.length) {
-            res.json({ message: "Error", errorsList });
+            res.status(400).json({ message: "Error", errorsList });
         }
         else {
             next();

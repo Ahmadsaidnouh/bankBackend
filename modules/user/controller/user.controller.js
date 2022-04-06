@@ -223,10 +223,10 @@ const updateBalance = async (req, res) => {
             res.json({message: "Done", updatedUser});
         }
         else {
-            res.json({message: "Error"});
+            res.status(400).json({message: "Error"});
         }
     } catch (error) {
-        res.json({message: "Error"});
+        res.status(400).json({message: "Error"});
     }
 }
 
@@ -239,10 +239,10 @@ const getUser = async (req, res) => {
             res.json({message: "Done", user, users});
         }
         else {
-            res.json({message: "Error"});
+            res.status(400).json({message: "Error"});
         }
     } catch (error) {
-        res.json({message: "Error"});
+        res.status(400).json({message: "Error"});
     }
 }
 const getAllUsers = async (req, res) => {
@@ -251,7 +251,7 @@ const getAllUsers = async (req, res) => {
         res.json({message: "Done", users});
     }
     else {
-        res.json({message: "Error"});
+        res.status(400).json({message: "Error"});
     }
 }
 const addUser = async(req, res) => {
@@ -264,7 +264,7 @@ const addUser = async(req, res) => {
         const addedUser = await createdUser.save();
         res.json({message:"done", addedUser});
     } catch (error) {
-        res.json({message:"err"})
+        res.status(400).json({message:"Error"})
     }
 }
 
