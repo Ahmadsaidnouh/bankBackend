@@ -10,11 +10,10 @@ const {
     updateBalanceValidation,
     getUserValidation
 } = require("./user.validation");
-const userModel = require("../../DB/models/user.model");
 
 
 // apis start*************************
-router.get("/",async (req,res) => {res.json({message:"hello"})})
+router.get("/",async (req,res) => {res.json({message:"Working Successfully"})})
 router.post("/user/addUser", addUser)
 router.get("/user/getAllUsers", getAllUsers);
 router.get("/user/getUser/:userId", validationFunc(getUserValidation),getUser);
