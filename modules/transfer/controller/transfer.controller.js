@@ -36,8 +36,8 @@ const getUserTransfers = async (req, res) => {
         if (user) {
             const userTransfers = await transferModel.find({
                 $or: [
-                    { 'forUserId': userId },
-                    { 'toUserId': userId }
+                    { 'fromUserId': user._id },
+                    { 'toUserId': user._id }
                 ]
             }).populate([{
                 path: "fromUserId",
@@ -48,16 +48,6 @@ const getUserTransfers = async (req, res) => {
                 model: "user",
                 select: "email"
             }]);
-            // const transferedToYou = await transferModel.find({ toUserId: userId }).populate([{
-            //     path: "fromUserId",
-            //     model: "user",
-            //     select: "email"
-            // }, {
-            //     path: "toUserId",
-            //     model: "user",
-            //     select: "email"
-            // }]);
-            // const userTransfers = transferedByYou.push(tran)
             res.json({ message: "Done", userTransfers });
         }
         else {
