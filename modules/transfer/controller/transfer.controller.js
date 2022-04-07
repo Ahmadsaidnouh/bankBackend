@@ -34,7 +34,7 @@ const getUserTransfers = async (req, res) => {
     try {
         const user = await userModel.findOne({ _id: userId });
         if (user) {
-            const transferedByYou = await transferModel.find({ fromUserId: userId }).populate([{
+            const userTransfers = await transferModel.find({ fromUserId: userId, toUserId: userId }).populate([{
                 path: "fromUserId",
                 model: "user",
                 select: "email"
@@ -42,19 +42,17 @@ const getUserTransfers = async (req, res) => {
                 path: "toUserId",
                 model: "user",
                 select: "email"
-                
             }]);
-            const transferedToYou = await transferModel.find({ toUserId: userId }).populate([{
-                path: "fromUserId",
-                model: "user",
-                select: "email"
-            }, {
-                path: "toUserId",
-                model: "user",
-                select: "email"
-                
-            }]);
-            res.json({ message: "Done", transferedByYou, transferedToYou });
+            // const transferedToYou = await transferModel.find({ toUserId: userId }).populate([{
+            //     path: "fromUserId",
+            //     model: "user",
+            //     select: "email"
+            // }, {
+            //     path: "toUserId",
+            //     model: "user",
+            //     select: "email"
+            // }]);
+            res.json({ message: "Done", userTransfers});
         }
         else {
             res.status(400).json({ message: "No user with such email!!" })
