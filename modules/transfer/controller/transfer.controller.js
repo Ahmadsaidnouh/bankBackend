@@ -34,7 +34,7 @@ const getUserTransfers = async (req, res) => {
     try {
         const user = await userModel.findOne({ _id: userId });
         if (user) {
-            const userTransfers = await transferModel.find({
+            const temp = await transferModel.find({
                 $or: [
                     { 'fromUserId': user._id },
                     { 'toUserId': user._id }
@@ -48,6 +48,7 @@ const getUserTransfers = async (req, res) => {
                 model: "user",
                 select: "email"
             }]);
+            const userTransfers = temp.reverse();
             res.json({ message: "Done", userTransfers });
         }
         else {
